@@ -20,16 +20,27 @@ const FAQs: CollectionConfig = {
 	},
 	fields: [
 		{
-			name: "question",
-			type: "text",
-			label: "Question",
-			required: true,
-		},
-		{
-			name: "answer",
-			type: "textarea",
-			label: "Answer",
-			required: true,
+			type: "row",
+			fields: [
+				{
+					name: "question",
+					type: "text",
+					label: "Question",
+					required: true,
+					admin: {
+						width: "40%",
+					},
+				},
+				{
+					name: "answer",
+					type: "textarea",
+					label: "Answer",
+					required: true,
+					admin: {
+						width: "60%",
+					},
+				},
+			],
 		},
 	],
 };
