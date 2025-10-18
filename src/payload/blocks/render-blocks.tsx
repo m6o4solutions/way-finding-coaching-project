@@ -1,0 +1,82 @@
+import React, { Fragment } from "react";
+
+import { ArchiveBlock } from "@/payload/blocks/archive/component";
+import { ContentBlock } from "@/payload/blocks/content/component";
+import { CallToActionBlock } from "@/payload/blocks/cta/component";
+import { DifferentiationBlock } from "@/payload/blocks/differentiation/component";
+import { FAQBlock } from "@/payload/blocks/faq/component";
+import { MediaBlock } from "@/payload/blocks/media/component";
+import { MeetMichelleBlock } from "@/payload/blocks/meet-michelle/component";
+import { PrimaryHeroBlock } from "@/payload/blocks/primary-hero/component";
+import { SecondaryHeroBlock } from "@/payload/blocks/secondary-hero/component";
+import { SocialProofBlock } from "@/payload/blocks/social-proof/component";
+import { SolutionBenefitsBlock } from "@/payload/blocks/solution-benefits/component";
+import { ProblemAgitationBlock } from "@/payload/blocks/problem-agitation/component";
+
+import type { Page } from "@/payload-types";
+
+/**
+ * props for the RenderBlocks component.
+ */
+interface RenderBlocksProps {
+	blocks: Page["layout"][0][];
+}
+
+const blockComponents = {
+	archive: ArchiveBlock,
+	content: ContentBlock,
+	differentiation: DifferentiationBlock,
+	cta: CallToActionBlock,
+	faq: FAQBlock,
+	media: MediaBlock,
+	meetMichelle: MeetMichelleBlock,
+	primaryHero: PrimaryHeroBlock,
+	secondaryHero: SecondaryHeroBlock,
+	socialProof: SocialProofBlock,
+	solutionBenefits: SolutionBenefitsBlock,
+	problemAgitation: ProblemAgitationBlock,
+} as const; // use 'as const' to narrow down blockType keys
+
+/**
+ * renders a list of blocks dynamically based on the blockType.
+ * @param {RenderBlocksProps} props - the component properties.
+ * @returns {JSX.Element | null} the rendered blocks wrapped in a Fragment, or null.
+ */
+const RenderBlocks = (props: RenderBlocksProps) => {
+	const { blocks } = props;
+
+	const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
+
+	if (hasBlocks) {
+		return (
+			<Fragment>
+				{blocks.map((block, index) => {
+					const { blockType } = block;
+
+					// use the block type check to ensure type safety with blockComponents keys
+					if (
+						blockType &&
+						typeof blockType === "string" &&
+						blockType in blockComponents
+					) {
+						const Block = blockComponents[blockType as keyof typeof blockComponents];
+
+						if (Block) {
+							return (
+								<div key={index}>
+									{/* @ts-expect-error there may be some mismatch between the expected types here */}
+									<Block {...block} />
+								</div>
+							);
+						}
+					}
+					return null;
+				})}
+			</Fragment>
+		);
+	}
+
+	return null;
+};
+
+export { RenderBlocks };
