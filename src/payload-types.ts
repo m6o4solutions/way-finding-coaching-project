@@ -376,7 +376,9 @@ export interface Media {
  */
 export interface User {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  name?: string | null;
   photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -1446,6 +1448,8 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
   name?: T;
   photo?: T;
   updatedAt?: T;
