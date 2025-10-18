@@ -1,4 +1,4 @@
-# The Way Finding Landing Page Project
+# The Way Finding Coaching Landing Page Project
 
 Welcome to the repository for The Way Finding Landing Page project. This repository houses
 the codebase for the dynamic and interactive landing page, showcasing our commitment to
