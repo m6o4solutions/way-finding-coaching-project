@@ -34,11 +34,17 @@ COPY . .
 ENV DATABASE_URI="placeholder"
 ENV PAYLOAD_SECRET="placeholder"
 ENV PREVIEW_SECRET="placeholder"
+ENV CRON_SECRET="placeholder"
 ENV RESEND_API_KEY="placeholder"
 ENV RESEND_FROM_EMAIL="placeholder@email.com"
 ENV RESEND_FROM_NAME="placeholder"
-ENV UPLOADTHING_TOKEN="placeholder"
+ENV S3_BUCKET="placeholder"
+ENV S3_ACCESS_KEY_ID="placeholder"
+ENV S3_ACCESS_KEY_SECRET="placeholder"
+ENV S3_REGION="placeholder"
+ENV S3_ENDPOINT="placeholder"
 ENV NEXT_PUBLIC_SERVER_URL="http://placeholder.com"
+ENV NEXT_PUBLIC_META_ICON="s3-icon.svg"
 
 # Build Next.js app
 RUN corepack enable pnpm && pnpm build

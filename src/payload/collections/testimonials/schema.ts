@@ -21,21 +21,32 @@ const Testimonials: CollectionConfig = {
 	},
 	fields: [
 		{
-			name: "name",
-			type: "text",
-			label: "Name",
-			required: true,
+			type: "row",
+			fields: [
+				{
+					name: "name",
+					type: "text",
+					label: "Name",
+					required: true,
+					admin: {
+						width: "50%",
+					},
+				},
+				{
+					name: "job",
+					type: "text",
+					label: "Job Title",
+					admin: {
+						width: "50%",
+					},
+				},
+			],
 		},
 		{
 			name: "testimony",
 			type: "textarea",
 			label: "Testimony",
 			required: true,
-		},
-		{
-			name: "job",
-			type: "text",
-			label: "Job Title",
 		},
 		{
 			name: "photo",

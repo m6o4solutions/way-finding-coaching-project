@@ -109,10 +109,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    branding: Branding;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    branding: BrandingSelect<false> | BrandingSelect<true>;
   };
   locale: null;
   user: User & {
@@ -158,14 +160,14 @@ export interface Page {
     | Archive
     | CallToAction
     | ContentBlock
+    | Differentiation
+    | FAQS
+    | MeetMichelle
     | PrimaryHero
     | SecondaryHero
     | ProblemAgitation
-    | SolutionBenefits
-    | MeetMichelle
     | SocialProof
-    | Differentiation
-    | FAQS
+    | SolutionBenefits
   )[];
   meta?: {
     title?: string | null;
@@ -374,7 +376,9 @@ export interface Media {
  */
 export interface User {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  name?: string | null;
   photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -455,6 +459,63 @@ export interface ContentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Differentiation".
+ */
+export interface Differentiation {
+  title: string;
+  subtitle: string;
+  products: {
+    name: string;
+    features?:
+      | {
+          feature?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'differentiation';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQS".
+ */
+export interface FAQS {
+  title: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MeetMichelle".
+ */
+export interface MeetMichelle {
+  title: string;
+  bio: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  photo: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'meetMichelle';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "PrimaryHero".
  */
 export interface PrimaryHero {
@@ -514,42 +575,6 @@ export interface ProblemAgitation {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SolutionBenefits".
- */
-export interface SolutionBenefits {
-  title: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'solutionBenefits';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MeetMichelle".
- */
-export interface MeetMichelle {
-  title: string;
-  bio: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  photo: string | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'meetMichelle';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SocialProof".
  */
 export interface SocialProof {
@@ -560,34 +585,13 @@ export interface SocialProof {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Differentiation".
+ * via the `definition` "SolutionBenefits".
  */
-export interface Differentiation {
-  title: string;
-  subtitle: string;
-  products: {
-    name: string;
-    features?:
-      | {
-          feature?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'differentiation';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FAQS".
- */
-export interface FAQS {
+export interface SolutionBenefits {
   title: string;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'faq';
+  blockType: 'solutionBenefits';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -597,7 +601,7 @@ export interface Product {
   id: string;
   name: string;
   description?: string | null;
-  price?: number | null;
+  price: number;
   features?:
     | {
         feature?: string | null;
@@ -626,8 +630,8 @@ export interface Faq {
 export interface Testimonial {
   id: string;
   name: string;
-  testimony: string;
   job?: string | null;
+  testimony: string;
   photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -1085,14 +1089,14 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveSelect<T>;
         cta?: T | CallToActionSelect<T>;
         content?: T | ContentBlockSelect<T>;
+        differentiation?: T | DifferentiationSelect<T>;
+        faq?: T | FAQSSelect<T>;
+        meetMichelle?: T | MeetMichelleSelect<T>;
         primaryHero?: T | PrimaryHeroSelect<T>;
         secondaryHero?: T | SecondaryHeroSelect<T>;
         problemAgitation?: T | ProblemAgitationSelect<T>;
-        solutionBenefits?: T | SolutionBenefitsSelect<T>;
-        meetMichelle?: T | MeetMichelleSelect<T>;
         socialProof?: T | SocialProofSelect<T>;
-        differentiation?: T | DifferentiationSelect<T>;
-        faq?: T | FAQSSelect<T>;
+        solutionBenefits?: T | SolutionBenefitsSelect<T>;
       };
   meta?:
     | T
@@ -1158,6 +1162,48 @@ export interface ContentBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Differentiation_select".
+ */
+export interface DifferentiationSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  products?:
+    | T
+    | {
+        name?: T;
+        features?:
+          | T
+          | {
+              feature?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQS_select".
+ */
+export interface FAQSSelect<T extends boolean = true> {
+  title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MeetMichelle_select".
+ */
+export interface MeetMichelleSelect<T extends boolean = true> {
+  title?: T;
+  bio?: T;
+  photo?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "PrimaryHero_select".
  */
 export interface PrimaryHeroSelect<T extends boolean = true> {
@@ -1205,26 +1251,6 @@ export interface ProblemAgitationSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SolutionBenefits_select".
- */
-export interface SolutionBenefitsSelect<T extends boolean = true> {
-  title?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MeetMichelle_select".
- */
-export interface MeetMichelleSelect<T extends boolean = true> {
-  title?: T;
-  bio?: T;
-  photo?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SocialProof_select".
  */
 export interface SocialProofSelect<T extends boolean = true> {
@@ -1234,31 +1260,9 @@ export interface SocialProofSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Differentiation_select".
+ * via the `definition` "SolutionBenefits_select".
  */
-export interface DifferentiationSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  products?:
-    | T
-    | {
-        name?: T;
-        features?:
-          | T
-          | {
-              feature?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FAQS_select".
- */
-export interface FAQSSelect<T extends boolean = true> {
+export interface SolutionBenefitsSelect<T extends boolean = true> {
   title?: T;
   id?: T;
   blockName?: T;
@@ -1328,8 +1332,8 @@ export interface FaqsSelect<T extends boolean = true> {
  */
 export interface TestimonialsSelect<T extends boolean = true> {
   name?: T;
-  testimony?: T;
   job?: T;
+  testimony?: T;
   photo?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1444,6 +1448,8 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
   name?: T;
   photo?: T;
   updatedAt?: T;
@@ -1788,6 +1794,17 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branding".
+ */
+export interface Branding {
+  id: string;
+  organizationIcon: string | Media;
+  organizationLogo?: (string | null) | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -1838,6 +1855,17 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "branding_select".
+ */
+export interface BrandingSelect<T extends boolean = true> {
+  organizationIcon?: T;
+  organizationLogo?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -12,7 +12,7 @@ const Products: CollectionConfig = {
 		update: isAuthenticated,
 	},
 	admin: {
-		defaultColumns: ["image", "name", "description", "price", "createdAt", "updatedAt"],
+		defaultColumns: ["name", "image", "description", "price", "createdAt", "updatedAt"],
 		useAsTitle: "name",
 	},
 	labels: {
@@ -21,20 +21,32 @@ const Products: CollectionConfig = {
 	},
 	fields: [
 		{
-			name: "name",
-			type: "text",
-			label: "Product Name",
-			required: true,
-		},
-		{
-			name: "description",
-			type: "text",
-			label: "Description",
+			type: "row",
+			fields: [
+				{
+					name: "name",
+					type: "text",
+					label: "Product Name",
+					required: true,
+					admin: {
+						width: "40%",
+					},
+				},
+				{
+					name: "description",
+					type: "text",
+					label: "Description",
+					admin: {
+						width: "60%",
+					},
+				},
+			],
 		},
 		{
 			name: "price",
 			type: "number",
 			label: "Price",
+			required: true,
 			min: 0,
 			max: 999999,
 		},

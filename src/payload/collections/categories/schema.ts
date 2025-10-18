@@ -22,15 +22,26 @@ const Categories: CollectionConfig = {
 	},
 	fields: [
 		{
-			name: "title",
-			type: "text",
-			label: "Title",
-			required: true,
-		},
-		{
-			name: "description",
-			type: "textarea",
-			label: "Description",
+			type: "row",
+			fields: [
+				{
+					name: "title",
+					type: "text",
+					label: "Title",
+					required: true,
+					admin: {
+						width: "30%",
+					},
+				},
+				{
+					name: "description",
+					type: "textarea",
+					label: "Description",
+					admin: {
+						width: "70%",
+					},
+				},
+			],
 		},
 		...slugField(),
 	],
