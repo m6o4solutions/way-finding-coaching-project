@@ -601,7 +601,7 @@ export interface Product {
   id: string;
   name: string;
   description?: string | null;
-  price?: number | null;
+  price: number;
   features?:
     | {
         feature?: string | null;
