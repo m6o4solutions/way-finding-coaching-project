@@ -628,8 +628,8 @@ export interface Faq {
 export interface Testimonial {
   id: string;
   name: string;
-  testimony: string;
   job?: string | null;
+  testimony: string;
   photo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -1330,8 +1330,8 @@ export interface FaqsSelect<T extends boolean = true> {
  */
 export interface TestimonialsSelect<T extends boolean = true> {
   name?: T;
-  testimony?: T;
   job?: T;
+  testimony?: T;
   photo?: T;
   updatedAt?: T;
   createdAt?: T;
