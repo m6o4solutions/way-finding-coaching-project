@@ -7,21 +7,28 @@ import type { Config } from "@/payload-types";
 
 type Global = keyof Config["globals"];
 
+// each slug directly maps to its corresponding global type
+type DataFromGlobalSlug<TSlug extends Global> = Config["globals"][TSlug];
+
 /**
  * fetches a single global document from Payload by slug.
  * @param {Global} slug - the slug of the global document.
  * @param {number} [depth=0] - the depth for relationship population.
  * @returns {Promise<any>} the global document object.
  */
-const getGlobal = async (slug: Global, depth = 0) => {
-	const payload = await getPayload({ config: config });
+const getGlobal = async <TSlug extends Global>(
+	slug: TSlug,
+	depth = 0,
+): Promise<DataFromGlobalSlug<TSlug>> => {
+	const payload = await getPayload({ config });
 
 	const global = await payload.findGlobal({
 		slug,
 		depth,
 	});
 
-	return global;
+	// cast safely to the inferred type
+	return global as DataFromGlobalSlug<TSlug>;
 };
 
 /**
@@ -31,7 +38,7 @@ const getGlobal = async (slug: Global, depth = 0) => {
  * @param {number} [depth=0] - the depth for relationship population.
  * @returns {() => Promise<any>} a memoized function that returns the global document.
  */
-const getCachedGlobal = (slug: Global, depth = 0) =>
+const getCachedGlobal = <TSlug extends Global>(slug: TSlug, depth = 0) =>
 	unstable_cache(async () => getGlobal(slug, depth), [slug], {
 		tags: [`global_${slug}`],
 	});
