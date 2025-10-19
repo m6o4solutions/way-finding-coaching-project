@@ -1,11 +1,11 @@
 ## [1.0.1](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.0.0...v1.0.1) (2025-10-18)
 
-
 ### Bug Fixes
 
-* make getCachedGlobal generic and strongly typed ([a80646e](https://github.com/m6o4solutions/way-finding-coaching-project/commit/a80646e0d9e21ef908642ef8d98c36971c8444c6))
+- make getCachedGlobal generic and strongly typed
+  ([a80646e](https://github.com/m6o4solutions/way-finding-coaching-project/commit/a80646e0d9e21ef908642ef8d98c36971c8444c6))
 
-# 1.21.0 (2025-10-18)
+# 1.0.0 (2025-10-18)
 
 ### Features
 
