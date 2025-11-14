@@ -19,16 +19,10 @@ import { Code } from "@/payload/blocks/code/schema";
 import { Media } from "@/payload/blocks/media/schema";
 
 import { slugField } from "@/payload/fields/slug";
-import {
-	isAuthenticated,
-	isAuthenticatedOrPublished,
-} from "@/payload/access/access-control";
+import { isAuthenticated, isAuthenticatedOrPublished } from "@/payload/access/access-control";
 import { generatePreviewPath } from "@/payload/utilities/generate-preview-path";
 import { populateAuthors } from "@/payload/collections/posts/hooks/populate-authors";
-import {
-	revalidateDelete,
-	revalidatePost,
-} from "@/payload/collections/posts/hooks/revalidate-post";
+import { revalidateDelete, revalidatePost } from "@/payload/collections/posts/hooks/revalidate-post";
 
 import type { CollectionConfig } from "payload";
 
@@ -56,6 +50,7 @@ const Posts: CollectionConfig<"posts"> = {
 	},
 	admin: {
 		defaultColumns: ["title", "slug", "createdAt", "updatedAt"],
+		group: "Content",
 		livePreview: {
 			url: ({ data, req }) => {
 				const path = generatePreviewPath({

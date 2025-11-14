@@ -1,8 +1,4 @@
-import {
-	FixedToolbarFeature,
-	HeadingFeature,
-	lexicalEditor,
-} from "@payloadcms/richtext-lexical";
+import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { s3Storage } from "@payloadcms/storage-s3";
@@ -61,7 +57,9 @@ const plugins: Plugin[] = [
 					return field;
 				});
 			},
+			admin: { group: "Plugins" },
 		},
+		formSubmissionOverrides: { admin: { group: "Plugins" } },
 	}),
 	payloadCloudPlugin(),
 	redirectsPlugin({
@@ -74,8 +72,7 @@ const plugins: Plugin[] = [
 						return {
 							...field,
 							admin: {
-								description:
-									"You will need to rebuild the website when changing this field.",
+								description: "You will need to rebuild the website when changing this field.",
 							},
 						};
 					}
@@ -85,6 +82,7 @@ const plugins: Plugin[] = [
 			hooks: {
 				afterChange: [revalidateRedirects],
 			},
+			admin: { group: "Plugins" },
 		},
 	}),
 	s3Storage({
@@ -109,6 +107,7 @@ const plugins: Plugin[] = [
 			fields: ({ defaultFields }) => {
 				return [...defaultFields, ...searchFields];
 			},
+			admin: { group: "Plugins" },
 		},
 	}),
 	seoPlugin({ generateTitle, generateURL }),

@@ -75,10 +75,11 @@ export interface Config {
     categories: Category;
     media: Media;
     users: User;
-    forms: Form;
+    forms: Form1;
     'form-submissions': FormSubmission;
     redirects: Redirect;
     search: Search;
+    'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -98,6 +99,7 @@ export interface Config {
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -168,6 +170,7 @@ export interface Page {
     | ProblemAgitation
     | SocialProof
     | SolutionBenefits
+    | Form
   )[];
   meta?: {
     title?: string | null;
@@ -595,52 +598,35 @@ export interface SolutionBenefits {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
+ * via the `definition` "Form".
  */
-export interface Product {
-  id: string;
-  name: string;
-  description?: string | null;
-  price: number;
-  features?:
-    | {
-        feature?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  image: string | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs".
- */
-export interface Faq {
-  id: string;
-  question: string;
-  answer: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: string;
-  name: string;
-  job?: string | null;
-  testimony: string;
-  photo?: (string | null) | Media;
-  updatedAt: string;
-  createdAt: string;
+export interface Form {
+  form: string | Form1;
+  enableCompanionText?: boolean | null;
+  companionText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'form';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "forms".
  */
-export interface Form {
+export interface Form1 {
   id: string;
   title: string;
   fields?:
@@ -812,11 +798,54 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  name: string;
+  description?: string | null;
+  price: number;
+  features?:
+    | {
+        feature?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  image: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  name: string;
+  job?: string | null;
+  testimony: string;
+  photo?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
   id: string;
-  form: string | Form;
+  form: string | Form1;
   submissionData?:
     | {
         field: string;
@@ -883,6 +912,23 @@ export interface Search {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: string;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1017,7 +1063,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'forms';
-        value: string | Form;
+        value: string | Form1;
       } | null)
     | ({
         relationTo: 'form-submissions';
@@ -1030,10 +1076,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'search';
         value: string | Search;
-      } | null)
-    | ({
-        relationTo: 'payload-jobs';
-        value: string | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1097,6 +1139,7 @@ export interface PagesSelect<T extends boolean = true> {
         problemAgitation?: T | ProblemAgitationSelect<T>;
         socialProof?: T | SocialProofSelect<T>;
         solutionBenefits?: T | SolutionBenefitsSelect<T>;
+        form?: T | FormSelect<T>;
       };
   meta?:
     | T
@@ -1264,6 +1307,17 @@ export interface SocialProofSelect<T extends boolean = true> {
  */
 export interface SolutionBenefitsSelect<T extends boolean = true> {
   title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form_select".
+ */
+export interface FormSelect<T extends boolean = true> {
+  form?: T;
+  enableCompanionText?: T;
+  companionText?: T;
   id?: T;
   blockName?: T;
 }
@@ -1660,6 +1714,14 @@ export interface SearchSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

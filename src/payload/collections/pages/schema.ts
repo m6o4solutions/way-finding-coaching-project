@@ -11,6 +11,7 @@ import { CallToAction } from "@/payload/blocks/cta/schema";
 import { Content } from "@/payload/blocks/content/schema";
 import { Differentiation } from "@/payload/blocks/differentiation/schema";
 import { FAQ } from "@/payload/blocks/faq/schema";
+import { Form } from "@/payload/blocks/forms/schema";
 import { MeetMichelle } from "@/payload/blocks/meet-michelle/schema";
 import { PrimaryHero } from "@/payload/blocks/primary-hero/schema";
 import { SecondaryHero } from "@/payload/blocks/secondary-hero/schema";
@@ -19,16 +20,10 @@ import { SolutionBenefits } from "@/payload/blocks/solution-benefits/schema";
 import { ProblemAgitation } from "@/payload/blocks/problem-agitation/schema";
 
 import { slugField } from "@/payload/fields/slug";
-import {
-	isAuthenticated,
-	isAuthenticatedOrPublished,
-} from "@/payload/access/access-control";
+import { isAuthenticated, isAuthenticatedOrPublished } from "@/payload/access/access-control";
 import { generatePreviewPath } from "@/payload/utilities/generate-preview-path";
 import { populatePublishedAt } from "@/payload/hooks/populate-published-at";
-import {
-	revalidateDelete,
-	revalidatePage,
-} from "@/payload/collections/pages/hooks/revalidate-page";
+import { revalidateDelete, revalidatePage } from "@/payload/collections/pages/hooks/revalidate-page";
 
 import type { CollectionConfig } from "payload";
 
@@ -51,6 +46,7 @@ const Pages: CollectionConfig<"pages"> = {
 	},
 	admin: {
 		defaultColumns: ["title", "slug", "createdAt", "updatedAt"],
+		group: "Content",
 		livePreview: {
 			url: ({ data, req }) => {
 				const path = generatePreviewPath({
@@ -105,6 +101,7 @@ const Pages: CollectionConfig<"pages"> = {
 								ProblemAgitation,
 								SocialProof,
 								SolutionBenefits,
+								Form,
 							],
 						},
 					],
