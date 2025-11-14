@@ -9,7 +9,7 @@ const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
 	const serverUrl = getServerSideURL();
 
 	// default image used when no meta image is defined
-	let url = serverUrl + "/website-template-OG.webp";
+	let url = serverUrl + "/way-finding-og.webp";
 
 	// if a media object is provided, use its og or base url
 	if (image && typeof image === "object" && "url" in image) {
@@ -22,18 +22,14 @@ const getImageURL = (image?: Media | Config["db"]["defaultIDType"] | null) => {
 
 // builds the metadata object for a next.js page or post document,
 // including title, description, and open graph information
-const generateMeta = async (args: {
-	doc: Partial<Page> | Partial<Post> | null;
-}): Promise<Metadata> => {
+const generateMeta = async (args: { doc: Partial<Page> | Partial<Post> | null }): Promise<Metadata> => {
 	const { doc } = args;
 
 	// resolve og image url from the document
 	const ogImage = getImageURL(doc?.meta?.image);
 
 	// append site name to meta title if available
-	const title = doc?.meta?.title
-		? doc.meta.title + " | M6O4 Solutions"
-		: "M6O4 Solutions";
+	const title = doc?.meta?.title ? doc.meta.title + " | Way Finding Coaching" : "Way Finding Coaching";
 
 	// compose and return metadata object
 	return {
