@@ -1,5 +1,3 @@
-import React from "react";
-
 import { cn } from "@/lib/utils";
 
 import { Media } from "@/components/media";
@@ -34,18 +32,11 @@ const MediaBlock = (props: Props) => {
 	} = props;
 
 	let caption;
+
 	if (media && typeof media === "object") caption = media.caption;
 
 	return (
-		<div
-			className={cn(
-				"",
-				{
-					container: enableGutter,
-				},
-				className,
-			)}
-		>
+		<div className={cn("", { container: enableGutter }, className)}>
 			{(media || staticImage) && (
 				<Media
 					imgClassName={cn("border border-border rounded-[0.8rem]", imgClassName)}
@@ -54,15 +45,7 @@ const MediaBlock = (props: Props) => {
 				/>
 			)}
 			{caption && (
-				<div
-					className={cn(
-						"mt-6",
-						{
-							container: !disableInnerContainer,
-						},
-						captionClassName,
-					)}
-				>
+				<div className={cn("mt-6", { container: !disableInnerContainer }, captionClassName)}>
 					<RichText data={caption} enableGutter={false} />
 				</div>
 			)}

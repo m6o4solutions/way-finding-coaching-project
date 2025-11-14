@@ -5,14 +5,14 @@ import type { Metadata } from "next";
 const defaultOpenGraph: Metadata["openGraph"] = {
 	type: "website",
 	description:
-		"M6O4 delivers trusted, modern technology solutions that help businesses grow with confidence.",
+		"We guide growth-minded individuals and teams from internal conflict to a clear, focused, and vibrant life. It's time to build the future you deserve.",
 	images: [
 		{
-			url: `${getServerSideURL()}/abstract-image-1.jpg`,
+			url: `${getServerSideURL()}/way-finding-og.webp`,
 		},
 	],
-	siteName: "M6O4 Solutions",
-	title: "M6O4 Solutions",
+	siteName: "Way Finding Coaching",
+	title: "Way Finding Coaching",
 };
 
 // merges provided open graph data with defaults to ensure required fields exist
