@@ -19,16 +19,10 @@ import { SolutionBenefits } from "@/payload/blocks/solution-benefits/schema";
 import { ProblemAgitation } from "@/payload/blocks/problem-agitation/schema";
 
 import { slugField } from "@/payload/fields/slug";
-import {
-	isAuthenticated,
-	isAuthenticatedOrPublished,
-} from "@/payload/access/access-control";
+import { isAuthenticated, isAuthenticatedOrPublished } from "@/payload/access/access-control";
 import { generatePreviewPath } from "@/payload/utilities/generate-preview-path";
 import { populatePublishedAt } from "@/payload/hooks/populate-published-at";
-import {
-	revalidateDelete,
-	revalidatePage,
-} from "@/payload/collections/pages/hooks/revalidate-page";
+import { revalidateDelete, revalidatePage } from "@/payload/collections/pages/hooks/revalidate-page";
 
 import type { CollectionConfig } from "payload";
 
@@ -51,6 +45,7 @@ const Pages: CollectionConfig<"pages"> = {
 	},
 	admin: {
 		defaultColumns: ["title", "slug", "createdAt", "updatedAt"],
+		group: "Content",
 		livePreview: {
 			url: ({ data, req }) => {
 				const path = generatePreviewPath({
