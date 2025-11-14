@@ -11,6 +11,7 @@ import { CallToAction } from "@/payload/blocks/cta/schema";
 import { Content } from "@/payload/blocks/content/schema";
 import { Differentiation } from "@/payload/blocks/differentiation/schema";
 import { FAQ } from "@/payload/blocks/faq/schema";
+import { Form } from "@/payload/blocks/forms/schema";
 import { MeetMichelle } from "@/payload/blocks/meet-michelle/schema";
 import { PrimaryHero } from "@/payload/blocks/primary-hero/schema";
 import { SecondaryHero } from "@/payload/blocks/secondary-hero/schema";
@@ -100,6 +101,7 @@ const Pages: CollectionConfig<"pages"> = {
 								ProblemAgitation,
 								SocialProof,
 								SolutionBenefits,
+								Form,
 							],
 						},
 					],

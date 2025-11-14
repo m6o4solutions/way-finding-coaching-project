@@ -75,7 +75,7 @@ export interface Config {
     categories: Category;
     media: Media;
     users: User;
-    forms: Form;
+    forms: Form1;
     'form-submissions': FormSubmission;
     redirects: Redirect;
     search: Search;
@@ -170,6 +170,7 @@ export interface Page {
     | ProblemAgitation
     | SocialProof
     | SolutionBenefits
+    | Form
   )[];
   meta?: {
     title?: string | null;
@@ -597,52 +598,35 @@ export interface SolutionBenefits {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
+ * via the `definition` "Form".
  */
-export interface Product {
-  id: string;
-  name: string;
-  description?: string | null;
-  price: number;
-  features?:
-    | {
-        feature?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  image: string | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs".
- */
-export interface Faq {
-  id: string;
-  question: string;
-  answer: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: string;
-  name: string;
-  job?: string | null;
-  testimony: string;
-  photo?: (string | null) | Media;
-  updatedAt: string;
-  createdAt: string;
+export interface Form {
+  form: string | Form1;
+  enableCompanionText?: boolean | null;
+  companionText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'form';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "forms".
  */
-export interface Form {
+export interface Form1 {
   id: string;
   title: string;
   fields?:
@@ -814,11 +798,54 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  name: string;
+  description?: string | null;
+  price: number;
+  features?:
+    | {
+        feature?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  image: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  name: string;
+  job?: string | null;
+  testimony: string;
+  photo?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
   id: string;
-  form: string | Form;
+  form: string | Form1;
   submissionData?:
     | {
         field: string;
@@ -1036,7 +1063,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'forms';
-        value: string | Form;
+        value: string | Form1;
       } | null)
     | ({
         relationTo: 'form-submissions';
@@ -1112,6 +1139,7 @@ export interface PagesSelect<T extends boolean = true> {
         problemAgitation?: T | ProblemAgitationSelect<T>;
         socialProof?: T | SocialProofSelect<T>;
         solutionBenefits?: T | SolutionBenefitsSelect<T>;
+        form?: T | FormSelect<T>;
       };
   meta?:
     | T
@@ -1279,6 +1307,17 @@ export interface SocialProofSelect<T extends boolean = true> {
  */
 export interface SolutionBenefitsSelect<T extends boolean = true> {
   title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Form_select".
+ */
+export interface FormSelect<T extends boolean = true> {
+  form?: T;
+  enableCompanionText?: T;
+  companionText?: T;
   id?: T;
   blockName?: T;
 }
