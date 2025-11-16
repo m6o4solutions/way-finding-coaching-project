@@ -22,28 +22,34 @@ const Footer = async () => {
 
 					<div className="-mx-4 mt-6 flex flex-wrap justify-center">
 						{navigationItems.map(({ link }, index) => (
-							<a
-								key={index}
-								href={link.url ?? "/"}
-								className="mx-4 text-sm text-[#B2D2C2] hover:text-white"
-							>
+							<Link key={index} href={link.url ?? "/"} className="mx-4 text-sm text-[#B2D2C2] hover:text-white">
 								{link.label}
-							</a>
+							</Link>
 						))}
 					</div>
 				</div>
 
 				<hr className="my-6 border-white/20 md:my-10" />
 
-				<div className="flex flex-col items-center sm:flex-row sm:justify-between">
-					<p className="text-center text-sm text-[#B2D2C2]">{footerCopyright}</p>
+				<div className="flex flex-col items-center gap-3 lg:flex-row lg:justify-between">
+					<p className="text-center text-sm text-[#B2D2C2]">
+						&copy; {new Date().getFullYear()} {footerCopyright} | Website Created by{" "}
+						<Link
+							href="https://www.m6o4solutions.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="hover:text-white hover:underline"
+						>
+							M6O4 Solutions.
+						</Link>
+					</p>
 
 					<div className="flex">
-						<a
+						<Link
 							href={contactLinkedInLink}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="mx-4 text-[#B2D2C2] hover:text-white"
+							className="mx-3 text-[#B2D2C2] hover:text-white"
 						>
 							<svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
 								<path
@@ -52,7 +58,7 @@ const Footer = async () => {
 									clipRule="evenodd"
 								/>
 							</svg>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>
