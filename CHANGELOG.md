@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.22.0...v1.23.0) (2025-12-03)
+
+
+### Features
+
+* add fallbackLocale property to Config interface ([b169551](https://github.com/m6o4solutions/way-finding-coaching-project/commit/b1695512faa382c8250c8c76372b2b89c4547bbc))
+
 # [1.22.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.21.1...v1.22.0) (2025-11-14)
 
 
