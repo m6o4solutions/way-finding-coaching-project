@@ -1,22 +1,23 @@
 # [1.23.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.22.0...v1.23.0) (2025-12-03)
 
-
 ### Features
 
-* add fallbackLocale property to Config interface ([b169551](https://github.com/m6o4solutions/way-finding-coaching-project/commit/b1695512faa382c8250c8c76372b2b89c4547bbc))
+- add fallbackLocale property to Config interface
+  ([b169551](https://github.com/m6o4solutions/way-finding-coaching-project/commit/b1695512faa382c8250c8c76372b2b89c4547bbc))
 
 # [1.22.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.21.1...v1.22.0) (2025-11-14)
 
-
 ### Bug Fixes
 
-* revalidateTag issue on posts, pages and globals ([bcbb89d](https://github.com/m6o4solutions/way-finding-coaching-project/commit/bcbb89d5657795d51b6fdcee363f68d15a327d62))
-
+- revalidateTag issue on posts, pages and globals
+  ([bcbb89d](https://github.com/m6o4solutions/way-finding-coaching-project/commit/bcbb89d5657795d51b6fdcee363f68d15a327d62))
 
 ### Features
 
-* implement payload cms forms ([93986a6](https://github.com/m6o4solutions/way-finding-coaching-project/commit/93986a60855725834113e5da4f9af4387f4cc761))
-* implement sitemaps for pages and posts ([70ad833](https://github.com/m6o4solutions/way-finding-coaching-project/commit/70ad83308477a3bc87513ffa63fe903a2342178f))
+- implement payload cms forms
+  ([93986a6](https://github.com/m6o4solutions/way-finding-coaching-project/commit/93986a60855725834113e5da4f9af4387f4cc761))
+- implement sitemaps for pages and posts
+  ([70ad833](https://github.com/m6o4solutions/way-finding-coaching-project/commit/70ad83308477a3bc87513ffa63fe903a2342178f))
 
 ## [1.0.1](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.0.0...v1.0.1) (2025-10-18)
 
