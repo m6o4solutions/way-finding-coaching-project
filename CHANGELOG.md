@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.23.0...v1.24.0) (2025-12-17)
+
+
+### Features
+
+* add Dockerfile and GitHub Actions workflow for GHCR deployment ([5859ff0](https://github.com/m6o4solutions/way-finding-coaching-project/commit/5859ff0e1a094f657df29289f332c48ca0f5968e))
+
 # [1.23.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.22.0...v1.23.0) (2025-12-03)
 
 ### Features
