@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.24.0...v1.25.0) (2025-12-18)
+
+
+### Features
+
+* update GitHub Actions workflows for improved token usage ([0d270c8](https://github.com/m6o4solutions/way-finding-coaching-project/commit/0d270c8492172ac23f4c0c7f94eb3430540336ed))
+
 # [1.24.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.23.0...v1.24.0) (2025-12-17)
 
 
