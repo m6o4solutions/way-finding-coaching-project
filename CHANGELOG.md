@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.25.0...v1.25.1) (2025-12-18)
+
+
+### Bug Fixes
+
+* add permissions for issues and pull-requests ([afbd5db](https://github.com/m6o4solutions/way-finding-coaching-project/commit/afbd5db7fbd9ebc4b19511e68baa4ddbc5220bb2))
+
 # [1.25.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.24.0...v1.25.0) (2025-12-18)
 
 
