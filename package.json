@@ -15,6 +15,7 @@
 		"start": "cross-env NODE_OPTIONS=--no-deprecation next start"
 	},
 	"dependencies": {
+		"@microsoft/clarity": "^1.0.2",
 		"@payloadcms/db-mongodb": "^3.68.5",
 		"@payloadcms/email-resend": "^3.68.5",
 		"@payloadcms/live-preview-react": "^3.68.5",

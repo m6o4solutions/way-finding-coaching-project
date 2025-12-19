@@ -1,8 +1,9 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Geist } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
+import { ClarityTracker } from "@/components/clarity-tracker";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { Footer } from "@/payload/blocks/globals/footer/component";
@@ -13,46 +14,33 @@ import { mergeOpenGraph } from "@/payload/utilities/merge-opengraph";
 
 import type { Metadata } from "next";
 
-// import global styles for the application
+// load global styles to establish the baseline css for the site
 import "@/styles/globals.css";
 
-// load the 'geist' font with the 'latin' subset
+// use Geist to maintain a modern aesthetic while ensuring performance via local subsets
 const geist = Geist({ subsets: ["latin"] });
 
-// /**
-//  * @component rootlayout
-//  * @description the primary layout component for the entire application.
-//  * it wraps all pages, setting up the basic html structure, fonts, theme provider,
-//  * and global components like the header and footer.
-//  *
-//  * it utilizes next.js's native root layout functionality.
-//  *
-//  * @param {object} props - the properties passed to the layout.
-//  * @param {reactnode} props.children - the page content to be rendered within the main tag.
-//  */
 const RootLayout = async (props: { children: ReactNode }) => {
 	const { children } = props;
 
 	return (
+		// suppresshydrationwarning prevents attribute mismatch errors from theme injection
 		<html lang="en" suppressHydrationWarning>
-			{/* apply base styles and the geist font class to the body */}
 			<body className={cn("flex h-screen flex-col", geist.className)}>
-				{/* theme provider manages dark/light mode across the app */}
-				<ThemeProvider
-					attribute="class" // use 'class' to apply theme to the html element
-					defaultTheme="light"
-					enableSystem // allow system preference to override
-					disableTransitionOnChange // prevent flashes when switching themes
-				>
-					{/* header component */}
+				{/* track user behavior early in the lifecycle to catch session starts */}
+				<ClarityTracker />
+
+				{/* isolate theme logic to ensure accessible color contrast and persistent preferences */}
+				<ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+					{/* keep navigation accessible across all route segments */}
 					<header>
 						<Header />
 					</header>
 
-					{/* main content area where child pages will be rendered */}
+					{/* expand main area to push footer down and preserve layout integrity */}
 					<main>{children}</main>
 
-					{/* footer component pinned to the bottom of the viewport */}
+					{/* mt-auto ensures the footer sticks to the bottom on short pages */}
 					<footer className="mt-auto">
 						<Footer />
 					</footer>
@@ -62,19 +50,19 @@ const RootLayout = async (props: { children: ReactNode }) => {
 	);
 };
 
-// /**
-//  * @constant metadata
-//  * @description next.js metadata object for site-wide seo and social sharing configuration.
-//  */
 const metadata: Metadata = {
-	// sets the base url for all relative urls in the metadata (e.g., og images)
+	// define a single source of truth for urls to prevent broken assets in seo crawlers
 	metadataBase: new URL(getServerSideURL()),
-	// merges site-wide open graph defaults (like site name and description)
+
+	// standardize social sharing previews across different platforms
 	openGraph: mergeOpenGraph(),
+
 	twitter: {
-		card: "summary_large_image", // ensures large image display on twitter
-		creator: "@m6o4solutions", // explicitly sets the twitter account creator
+		card: "summary_large_image",
+		creator: "@m6o4solutions",
 	},
+
+	// use svg for the favicon to maintain sharpness across all screen resolutions
 	icons: {
 		icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
 	},
