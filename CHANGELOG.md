@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.25.1...v1.26.0) (2025-12-19)
+
+
+### Features
+
+* integrate Microsoft Clarity for user behavior tracking ([cf65402](https://github.com/m6o4solutions/way-finding-coaching-project/commit/cf6540276e5a4d1604dda33b4c26bffdfca49acd))
+
 ## [1.25.1](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.25.0...v1.25.1) (2025-12-18)
 
 
