@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.26.0...v1.27.0) (2025-12-22)
+
+
+### Features
+
+* enhance ClarityTracker to support debug mode in dev ([3af5c54](https://github.com/m6o4solutions/way-finding-coaching-project/commit/3af5c54aeeb7efb4acdbf2a52d05c47af52119a7))
+
 # [1.26.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.25.1...v1.26.0) (2025-12-19)
 
 
