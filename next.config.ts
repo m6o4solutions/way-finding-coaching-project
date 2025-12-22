@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
 			".js": [".ts", ".tsx", ".js", ".jsx"],
 			".mjs": [".mts", ".mjs"],
 		};
+
+		// suppress the "Critical dependency" warning from Payload
+		webpackConfig.ignoreWarnings = [...(webpackConfig.ignoreWarnings || []), { module: /node_modules\/payload/ }];
+
 		return webpackConfig;
 	},
 };
