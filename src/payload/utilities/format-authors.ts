@@ -2,9 +2,7 @@ import { Post } from "@/payload-types";
 
 // converts an array of populated authors into a clean, human-readable string.
 // handles proper english joining with commas and 'and' for the last item.
-const formatAuthors = (
-	authors: NonNullable<NonNullable<Post["populatedAuthors"]>[number]>[],
-) => {
+const formatAuthors = (authors: NonNullable<NonNullable<Post["populatedAuthors"]>[number]>[]) => {
 	// extract only author names, excluding any null or undefined entries
 	const authorNames = authors.map((author) => author.name).filter(Boolean);
 

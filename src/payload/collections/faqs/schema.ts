@@ -1,5 +1,4 @@
 import { isAuthenticated, isPublic } from "@/payload/access/access-control";
-
 import type { CollectionConfig } from "payload";
 
 const FAQs: CollectionConfig = {

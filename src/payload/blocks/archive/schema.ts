@@ -1,10 +1,4 @@
-import {
-	FixedToolbarFeature,
-	HeadingFeature,
-	InlineToolbarFeature,
-	lexicalEditor,
-} from "@payloadcms/richtext-lexical";
-
+import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import type { Block } from "payload";
 
 const Archive: Block = {

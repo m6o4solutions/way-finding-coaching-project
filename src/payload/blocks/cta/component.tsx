@@ -1,8 +1,6 @@
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
-
 import type { CallToAction } from "@/payload-types";
+import Link from "next/link";
 
 /**
  * @component calltoactionblock
@@ -21,9 +19,7 @@ const CallToActionBlock = ({ content, links, title }: CallToAction) => {
 		<section className="bg-[#1A233D] px-4 py-20 text-white">
 			<div className="mx-auto max-w-6xl text-center">
 				<h2 className="mb-8 text-3xl font-bold text-balance md:text-4xl">{title}</h2>
-				<p className="mb-8 text-xl leading-relaxed text-pretty text-[#B2D2C2]">
-					{content}
-				</p>
+				<p className="mb-8 text-xl leading-relaxed text-pretty text-[#B2D2C2]">{content}</p>
 				{/* map over the links array to render button components */}
 				{links?.map(({ link }, index) => (
 					<Button

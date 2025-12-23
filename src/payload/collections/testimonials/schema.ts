@@ -1,5 +1,4 @@
 import { isAuthenticated } from "@/payload/access/access-control";
-
 import type { CollectionConfig } from "payload";
 
 const Testimonials: CollectionConfig = {

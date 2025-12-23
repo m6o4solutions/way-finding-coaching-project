@@ -1,11 +1,8 @@
-import Image from "next/image";
-
-import config from "@payload-config";
-import { getPayload } from "payload";
-
 import { Card, CardContent } from "@/components/ui/card";
-
 import { SolutionBenefits } from "@/payload-types";
+import config from "@payload-config";
+import Image from "next/image";
+import { getPayload } from "payload";
 
 /**
  * @component solutionbenefitsblock
@@ -31,23 +28,17 @@ const SolutionBenefitsBlock = async ({ title }: SolutionBenefits) => {
 		<section className="bg-[#B2D2C2] px-4 py-20">
 			<div className="mx-auto max-w-6xl">
 				{/* section title */}
-				<h2 className="mb-16 text-center text-3xl font-bold text-[#1A233D] md:text-4xl">
-					{title}
-				</h2>
+				<h2 className="mb-16 text-center text-3xl font-bold text-[#1A233D] md:text-4xl">{title}</h2>
 				{/* grid layout for product cards, 3 columns on medium screens and up */}
 				<div className="grid gap-8 md:grid-cols-3">
 					{products.docs.map((product) => {
 						const image = product.image;
 
 						// determine image source url, using a default fallback path
-						const imageSrc =
-							typeof image === "string" ? image : (image?.url ?? "/way-finding-og.webp");
+						const imageSrc = typeof image === "string" ? image : (image?.url ?? "/way-finding-og.webp");
 
 						// determine image alt text, using a default string fallback
-						const imageAlt =
-							typeof image === "string"
-								? "Product image"
-								: (image?.alt ?? "Product image");
+						const imageAlt = typeof image === "string" ? "Product image" : (image?.alt ?? "Product image");
 
 						return (
 							<Card
@@ -61,9 +52,7 @@ const SolutionBenefitsBlock = async ({ title }: SolutionBenefits) => {
 
 								<CardContent className="p-8">
 									{/* product name */}
-									<h3 className="mb-4 text-2xl font-bold text-[#1A233D]">
-										{product.name}
-									</h3>
+									<h3 className="mb-4 text-2xl font-bold text-[#1A233D]">{product.name}</h3>
 									{/* product description */}
 									<p className="mb-6 text-sm font-semibold tracking-wide text-[#49536C] uppercase">
 										{product.description}
@@ -77,11 +66,9 @@ const SolutionBenefitsBlock = async ({ title }: SolutionBenefits) => {
 											</li>
 										))}
 									</ul>
-									<div className="flex-shrink-0">
+									<div className="shrink-0">
 										{/* product price */}
-										<span className="pt-2 text-xl font-bold text-[#1A233D]">
-											${product.price}
-										</span>
+										<span className="pt-2 text-xl font-bold text-[#1A233D]">${product.price}</span>
 										<span className="text-[#49536C]">/person</span>
 									</div>
 								</CardContent>

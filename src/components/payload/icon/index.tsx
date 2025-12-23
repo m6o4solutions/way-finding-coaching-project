@@ -1,10 +1,7 @@
-import React from "react";
-import Image from "next/image";
-
-import { getPayload } from "payload";
-import config from "@payload-config";
-
 import { Media } from "@/payload-types";
+import config from "@payload-config";
+import Image from "next/image";
+import { getPayload } from "payload";
 
 const Icon = async () => {
 	const payload = await getPayload({ config: config });
@@ -15,13 +12,7 @@ const Icon = async () => {
 
 	return (
 		<>
-			<Image
-				src={icon?.url || ""}
-				alt={icon?.alt || "icon"}
-				width={32}
-				height={32}
-				priority
-			/>
+			<Image src={icon?.url || ""} alt={icon?.alt || "icon"} width={32} height={32} priority />
 		</>
 	);
 };

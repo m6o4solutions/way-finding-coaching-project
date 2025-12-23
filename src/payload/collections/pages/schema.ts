@@ -1,3 +1,20 @@
+import { isAuthenticated, isAuthenticatedOrPublished } from "@/payload/access/access-control";
+import { Archive } from "@/payload/blocks/archive/schema";
+import { Content } from "@/payload/blocks/content/schema";
+import { CallToAction } from "@/payload/blocks/cta/schema";
+import { Differentiation } from "@/payload/blocks/differentiation/schema";
+import { FAQ } from "@/payload/blocks/faq/schema";
+import { Form } from "@/payload/blocks/forms/schema";
+import { MeetMichelle } from "@/payload/blocks/meet-michelle/schema";
+import { PrimaryHero } from "@/payload/blocks/primary-hero/schema";
+import { ProblemAgitation } from "@/payload/blocks/problem-agitation/schema";
+import { SecondaryHero } from "@/payload/blocks/secondary-hero/schema";
+import { SocialProof } from "@/payload/blocks/social-proof/schema";
+import { SolutionBenefits } from "@/payload/blocks/solution-benefits/schema";
+import { revalidateDelete, revalidatePage } from "@/payload/collections/pages/hooks/revalidate-page";
+import { slugField } from "@/payload/fields/slug";
+import { populatePublishedAt } from "@/payload/hooks/populate-published-at";
+import { generatePreviewPath } from "@/payload/utilities/generate-preview-path";
 import {
 	MetaDescriptionField,
 	MetaImageField,
@@ -5,26 +22,6 @@ import {
 	OverviewField,
 	PreviewField,
 } from "@payloadcms/plugin-seo/fields";
-
-import { Archive } from "@/payload/blocks/archive/schema";
-import { CallToAction } from "@/payload/blocks/cta/schema";
-import { Content } from "@/payload/blocks/content/schema";
-import { Differentiation } from "@/payload/blocks/differentiation/schema";
-import { FAQ } from "@/payload/blocks/faq/schema";
-import { Form } from "@/payload/blocks/forms/schema";
-import { MeetMichelle } from "@/payload/blocks/meet-michelle/schema";
-import { PrimaryHero } from "@/payload/blocks/primary-hero/schema";
-import { SecondaryHero } from "@/payload/blocks/secondary-hero/schema";
-import { SocialProof } from "@/payload/blocks/social-proof/schema";
-import { SolutionBenefits } from "@/payload/blocks/solution-benefits/schema";
-import { ProblemAgitation } from "@/payload/blocks/problem-agitation/schema";
-
-import { slugField } from "@/payload/fields/slug";
-import { isAuthenticated, isAuthenticatedOrPublished } from "@/payload/access/access-control";
-import { generatePreviewPath } from "@/payload/utilities/generate-preview-path";
-import { populatePublishedAt } from "@/payload/hooks/populate-published-at";
-import { revalidateDelete, revalidatePage } from "@/payload/collections/pages/hooks/revalidate-page";
-
 import type { CollectionConfig } from "payload";
 
 /**

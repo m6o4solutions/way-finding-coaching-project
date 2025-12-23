@@ -1,5 +1,4 @@
 import { linkGroup } from "@/payload/fields/link-group";
-
 import type { Block } from "payload";
 
 const CallToAction: Block = {

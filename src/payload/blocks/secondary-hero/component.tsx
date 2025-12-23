@@ -1,6 +1,5 @@
-import Image from "next/image";
-
 import { SecondaryHero } from "@/payload-types";
+import Image from "next/image";
 
 /**
  * @component secondaryheroblock
@@ -17,24 +16,16 @@ const SecondaryHeroBlock = ({ media, headline, subHeadline }: SecondaryHero) => 
 	const image = media;
 
 	// determine image source url, using a default fallback path
-	const imageSrc =
-		typeof image === "string" ? image : (image.url ?? "/way-finding-og.webp");
+	const imageSrc = typeof image === "string" ? image : (image.url ?? "/way-finding-og.webp");
 
 	// determine image alt text, using a default string fallback
 	const imageAlt = typeof image === "string" ? "Hero image" : (image.alt ?? "Hero image");
 
 	return (
-		<section className="relative flex h-[50vh] min-h-[400px] items-center justify-center overflow-hidden bg-[#1A233D] text-white">
+		<section className="relative flex h-[50vh] min-h-100 items-center justify-center overflow-hidden bg-[#1A233D] text-white">
 			{/* the media component is set to fill the entire section */}
 			<div className="absolute inset-0">
-				<Image
-					src={imageSrc}
-					alt={imageAlt}
-					fill
-					priority
-					sizes="100vw"
-					className="object-cover"
-				/>
+				<Image src={imageSrc} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
 			</div>
 
 			{/* dark, semi-transparent overlay (50% opacity) for text readability */}

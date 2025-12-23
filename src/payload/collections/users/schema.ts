@@ -1,5 +1,4 @@
 import { isAuthenticated } from "@/payload/access/access-control";
-
 import type { CollectionConfig, FieldHook } from "payload";
 
 const populateFullName: FieldHook = async ({ data }) => {

@@ -1,23 +1,17 @@
-import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
-
+import { Page, Post } from "@/payload-types";
+import { revalidateRedirects } from "@/payload/hooks/revalidate-redirects";
+import { beforeSyncWithSearch } from "@/payload/search/before-sync";
+import { searchFields } from "@/payload/search/field-overrides";
+import { getServerSideURL } from "@/payload/utilities/get-url";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
-import { s3Storage } from "@payloadcms/storage-s3";
 import { formBuilderPlugin } from "@payloadcms/plugin-form-builder";
 import { redirectsPlugin } from "@payloadcms/plugin-redirects";
 import { searchPlugin } from "@payloadcms/plugin-search";
 import { seoPlugin } from "@payloadcms/plugin-seo";
-
-import { Plugin } from "payload";
-
-import { beforeSyncWithSearch } from "@/payload/search/before-sync";
-import { searchFields } from "@/payload/search/field-overrides";
-
-import { getServerSideURL } from "@/payload/utilities/get-url";
-
-import { revalidateRedirects } from "@/payload/hooks/revalidate-redirects";
-
 import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
-import { Page, Post } from "@/payload-types";
+import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
+import { s3Storage } from "@payloadcms/storage-s3";
+import { Plugin } from "payload";
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
 	return doc?.title ? `${doc.title} | Way Finding Coaching` : "Way Finding Coaching";

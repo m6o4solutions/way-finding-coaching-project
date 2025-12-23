@@ -1,9 +1,7 @@
-import React, { Fragment } from "react";
-
 import { ImageMedia } from "@/components/media/image-media";
-import { VideoMedia } from "@/components/media/video-media";
-
 import type { Props } from "@/components/media/types";
+import { VideoMedia } from "@/components/media/video-media";
+import { Fragment } from "react";
 
 /**
  * @component media

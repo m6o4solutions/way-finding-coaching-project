@@ -1,9 +1,6 @@
-import { link } from "@/payload/fields/link";
-
 import { isPublic } from "@/payload/access/access-control";
-
 import { revalidateHeader } from "@/payload/blocks/globals/header/hooks/revalidate-header";
-
+import { link } from "@/payload/fields/link";
 import type { GlobalConfig } from "payload";
 
 const Header: GlobalConfig = {

@@ -1,20 +1,11 @@
 "use client";
 
-import React from "react";
-// imports the highly optimized next.js image component.
-import NextImage from "next/image";
-
-// utility to merge tailwind classes.
-import { cn } from "@/lib/utils";
-// utility to construct the correct cdn/full url path for media assets from payload.
-import { getMediaUrl } from "@/payload/utilities/get-media-url";
-
-// imports types for static images and the media component's props.
-import type { StaticImageData } from "next/image";
 import type { Props as MediaProps } from "@/components/media/types";
-
-// imports custom css variables, specifically to access defined breakpoints.
 import { cssVariables } from "@/css-variables";
+import { cn } from "@/lib/utils";
+import { getMediaUrl } from "@/payload/utilities/get-media-url";
+import NextImage from "next/image";
+import type { StaticImageData } from "next/image";
 
 const { breakpoints } = cssVariables;
 

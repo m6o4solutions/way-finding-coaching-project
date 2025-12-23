@@ -1,6 +1,5 @@
-import React from "react";
-
 import { Code } from "@/payload/blocks/code/component-client";
+import React from "react";
 
 export type CodeBlockProps = {
 	code: string;

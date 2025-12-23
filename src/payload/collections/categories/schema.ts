@@ -1,7 +1,5 @@
 import { isAuthenticated, isPublic } from "@/payload/access/access-control";
-
 import { slugField } from "@/payload/fields/slug";
-
 import type { CollectionConfig } from "payload";
 
 const Categories: CollectionConfig = {

@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-
 import type { Differentiation } from "@/payload-types";
 
 /**
@@ -18,13 +17,9 @@ const DifferentiationBlock = ({ products, title, subtitle }: Differentiation) =>
 		<section className="bg-white px-4 py-20">
 			<div className="mx-auto max-w-6xl">
 				{/* section title */}
-				<h2 className="mb-8 text-center text-3xl font-bold text-[#1A233D] md:text-4xl">
-					{title}
-				</h2>
+				<h2 className="mb-8 text-center text-3xl font-bold text-[#1A233D] md:text-4xl">{title}</h2>
 				{/* section subtitle */}
-				<p className="mx-auto mb-16 max-w-3xl text-center text-xl text-pretty text-[#49536C]">
-					{subtitle}
-				</p>
+				<p className="mx-auto mb-16 max-w-3xl text-center text-xl text-pretty text-[#49536C]">{subtitle}</p>
 				{/* product grid: 3 columns on medium screens and up */}
 				<div className="grid gap-8 md:grid-cols-3">
 					{/* map over the products array to render individual cards */}

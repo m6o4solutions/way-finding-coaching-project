@@ -1,10 +1,8 @@
-import { draftMode } from "next/headers";
-import { NextRequest } from "next/server";
-import { redirect } from "next/navigation";
-
-import { getPayload } from "payload";
 import config from "@payload-config";
-
+import { draftMode } from "next/headers";
+import { redirect } from "next/navigation";
+import { NextRequest } from "next/server";
+import { getPayload } from "payload";
 import type { CollectionSlug, PayloadRequest } from "payload";
 
 /**

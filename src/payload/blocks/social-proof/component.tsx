@@ -1,9 +1,7 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { SocialProof } from "@/payload-types";
 import config from "@payload-config";
 import { getPayload } from "payload";
-
-import { Card, CardContent } from "@/components/ui/card";
-
-import { SocialProof } from "@/payload-types";
 
 /**
  * @component socialproofblock
@@ -30,21 +28,14 @@ const SocialProofBlock = async ({ title }: SocialProof) => {
 		<section className="bg-[#B2D2C2] px-4 py-20">
 			<div className="mx-auto max-w-6xl">
 				{/* section title */}
-				<h2 className="mb-16 text-center text-3xl font-bold text-[#1A233D] md:text-4xl">
-					{title}
-				</h2>
+				<h2 className="mb-16 text-center text-3xl font-bold text-[#1A233D] md:text-4xl">{title}</h2>
 				{/* testimonial grid: 3 columns on medium screens and up */}
 				<div className="grid gap-8 md:grid-cols-3">
 					{testimonials.docs.map((testimonial) => (
-						<Card
-							key={testimonial.id}
-							className="bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl"
-						>
+						<Card key={testimonial.id} className="bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl">
 							<CardContent className="p-8">
 								{/* the testimonial quote */}
-								<p className="mb-4 leading-relaxed text-[#49536C] italic">
-									&quot;{testimonial.testimony}&quot;
-								</p>
+								<p className="mb-4 leading-relaxed text-[#49536C] italic">&quot;{testimonial.testimony}&quot;</p>
 
 								{/* container for author information */}
 								<div className="mt-6 flex items-center">

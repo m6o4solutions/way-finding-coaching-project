@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
 import { useDebounce } from "@/payload/utilities/use-debounce";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 /**
  * a client-side search component that debounces user input
