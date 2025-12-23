@@ -1,9 +1,7 @@
+import { Button } from "@/components/ui/button";
+import { PrimaryHero } from "@/payload-types";
 import Image from "next/image";
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
-
-import { PrimaryHero } from "@/payload-types";
 
 /**
  * @component primaryheroblock
@@ -21,25 +19,17 @@ const PrimaryHeroBlock = ({ media, headline, subHeadline, links }: PrimaryHero) 
 	const image = media;
 
 	// determine image source url, using a default fallback path
-	const imageSrc =
-		typeof image === "string" ? image : (image.url ?? "/way-finding-og.webp");
+	const imageSrc = typeof image === "string" ? image : (image.url ?? "/way-finding-og.webp");
 
 	// determine image alt text, using a default string fallback
 	const imageAlt = typeof image === "string" ? "Hero image" : (image.alt ?? "Hero image");
 
 	return (
 		// full-width, tall section with dark background and centered text
-		<section className="relative flex h-[80vh] min-h-[600px] items-center justify-center overflow-hidden bg-[#1A233D] text-white">
+		<section className="relative flex h-[80vh] min-h-150 items-center justify-center overflow-hidden bg-[#1A233D] text-white">
 			{/* the media component is set to fill the entire section */}
 			<div className="absolute inset-0">
-				<Image
-					src={imageSrc}
-					alt={imageAlt}
-					fill
-					priority
-					sizes="100vw"
-					className="object-cover"
-				/>
+				<Image src={imageSrc} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
 			</div>
 
 			{/* dark, semi-transparent overlay to ensure text readability over the background media */}

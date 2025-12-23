@@ -1,5 +1,4 @@
 import { formatSlugHook } from "@/payload/fields/slug/format-slug";
-
 import type { CheckboxField, TextField } from "payload";
 
 type Overrides = {

@@ -7,15 +7,6 @@ import { Products } from "@/payload/collections/products/schema";
 import { Testimonials } from "@/payload/collections/testimonials/schema";
 import { Users } from "@/payload/collections/users/schema";
 
-const collections = [
-	Pages,
-	Posts,
-	Products,
-	FAQs,
-	Testimonials,
-	Categories,
-	Media,
-	Users,
-];
+const collections = [Pages, Posts, Products, FAQs, Testimonials, Categories, Media, Users];
 
 export { collections };

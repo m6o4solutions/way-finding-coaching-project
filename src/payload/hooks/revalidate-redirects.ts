@@ -1,5 +1,4 @@
 import { revalidateTag } from "next/cache";
-
 import type { CollectionAfterChangeHook } from "payload";
 
 /**

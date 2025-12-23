@@ -1,9 +1,7 @@
-import { notFound, redirect } from "next/navigation";
-
+import type { Page, Post } from "@/payload-types";
 import { getCachedDocument } from "@/payload/utilities/get-document";
 import { getCachedRedirects } from "@/payload/utilities/get-redirects";
-
-import type { Page, Post } from "@/payload-types";
+import { notFound, redirect } from "next/navigation";
 
 // props for the PayloadRedirects function
 interface Props {
@@ -39,9 +37,7 @@ const PayloadRedirects = async ({ disableNotFound, url }: Props) => {
 		} else {
 			// 3. handle object-based reference (e.g., when the reference is an object due to population)
 			redirectUrl = `${redirectItem.to?.reference?.relationTo !== "pages" ? `/${redirectItem.to?.reference?.relationTo}` : ""}/${
-				typeof redirectItem.to?.reference?.value === "object"
-					? redirectItem.to?.reference?.value?.slug
-					: ""
+				typeof redirectItem.to?.reference?.value === "object" ? redirectItem.to?.reference?.value?.slug : ""
 			}`;
 		}
 

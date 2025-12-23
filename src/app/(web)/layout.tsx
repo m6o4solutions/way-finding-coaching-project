@@ -1,18 +1,13 @@
-import { ReactNode } from "react";
-import { Geist } from "next/font/google";
-
-import { cn } from "@/lib/utils";
-
 import { ClarityTracker } from "@/components/clarity-tracker";
 import { ThemeProvider } from "@/components/theme-provider";
-
+import { cn } from "@/lib/utils";
 import { Footer } from "@/payload/blocks/globals/footer/component";
 import { Header } from "@/payload/blocks/globals/header/component";
-
 import { getServerSideURL } from "@/payload/utilities/get-url";
 import { mergeOpenGraph } from "@/payload/utilities/merge-opengraph";
-
 import type { Metadata } from "next";
+import { Geist } from "next/font/google";
+import { ReactNode } from "react";
 
 // load global styles to establish the baseline css for the site
 import "@/styles/globals.css";

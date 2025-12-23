@@ -1,15 +1,11 @@
+import { RichText } from "@/components/rich-text";
+import { Card, CardContent } from "@/components/ui/card";
+import type { Archive, Post } from "@/payload-types";
+import { formatDate } from "@/payload/utilities/format-date";
+import config from "@payload-config";
 import Image from "next/image";
 import Link from "next/link";
-
-import config from "@payload-config";
 import { getPayload } from "payload";
-
-import { Card, CardContent } from "@/components/ui/card";
-import { RichText } from "@/components/rich-text";
-
-import { formatDate } from "@/payload/utilities/format-date";
-
-import type { Post, Archive } from "@/payload-types";
 
 // combine the base archive type with an optional id for block identification
 type ArchiveBlockProps = Archive & {
@@ -27,14 +23,7 @@ type ArchiveBlockProps = Archive & {
  */
 const ArchiveBlock = async (props: ArchiveBlockProps) => {
 	// destructure properties for easier access
-	const {
-		id,
-		categories,
-		introContent,
-		limit: limitFromProps,
-		populateBy,
-		selectedDocs,
-	} = props;
+	const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs } = props;
 
 	// set the post limit, defaulting to 3 if the limit property is not provided
 	const limit = limitFromProps || 3;
@@ -86,13 +75,7 @@ const ArchiveBlock = async (props: ArchiveBlockProps) => {
 			<div className="mx-auto max-w-6xl">
 				<div className="px-3" id={`block-${id}`}>
 					{/* render optional introductory rich text content if available */}
-					{introContent && (
-						<RichText
-							className="mx-auto mb-6 max-w-[50rem]"
-							data={introContent}
-							enableGutter={false}
-						/>
-					)}
+					{introContent && <RichText className="mx-auto mb-6 max-w-200" data={introContent} enableGutter={false} />}
 
 					{/* responsive grid container for the post cards */}
 					<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -101,40 +84,27 @@ const ArchiveBlock = async (props: ArchiveBlockProps) => {
 							const image = post.meta?.image;
 
 							// determine image source url, using a default fallback path
-							const imageSrc =
-								typeof image === "string"
-									? image
-									: (image?.url ?? "/way-finding-og.webp");
+							const imageSrc = typeof image === "string" ? image : (image?.url ?? "/way-finding-og.webp");
 
 							// determine image alt text, using a default string fallback
-							const imageAlt =
-								typeof image === "string" ? "Post image" : (image?.alt ?? "Post image");
+							const imageAlt = typeof image === "string" ? "Post image" : (image?.alt ?? "Post image");
 
 							return (
 								<Link key={post.id} href={`/posts/${post.slug}`}>
 									<Card className="h-full cursor-pointer overflow-hidden bg-white p-0 shadow-lg transition-all duration-300 hover:shadow-xl">
 										{/* image container */}
 										<div className="relative h-64 w-full">
-											<Image
-												src={imageSrc}
-												alt={imageAlt}
-												fill
-												className="object-cover"
-											/>
+											<Image src={imageSrc} alt={imageAlt} fill className="object-cover" />
 										</div>
 										<CardContent className="p-6">
 											{/* published date, formatted by a utility function */}
-											<p className="mb-3 text-sm font-semibold text-[#B2D2C2]">
-												{formatDate(post.publishedAt)}
-											</p>
+											<p className="mb-3 text-sm font-semibold text-[#B2D2C2]">{formatDate(post.publishedAt)}</p>
 											{/* post title */}
 											<h3 className="mb-3 text-xl font-bold text-[#1A233D] transition-colors hover:text-[#49536C]">
 												{post.title}
 											</h3>
 											{/* post excerpt/description */}
-											<p className="leading-relaxed text-[#49536C]">
-												{post.meta?.description}
-											</p>
+											<p className="leading-relaxed text-[#49536C]">{post.meta?.description}</p>
 										</CardContent>
 									</Card>
 								</Link>

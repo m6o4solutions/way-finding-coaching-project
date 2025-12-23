@@ -1,4 +1,5 @@
 import type { Block } from "payload";
+
 const Differentiation: Block = {
 	slug: "differentiation",
 	interfaceName: "Differentiation",

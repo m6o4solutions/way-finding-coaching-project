@@ -1,8 +1,7 @@
 "use client";
 
-import { RowLabelProps, useRowLabel } from "@payloadcms/ui";
-
 import { Header } from "@/payload-types";
+import { RowLabelProps, useRowLabel } from "@payloadcms/ui";
 
 const RowLabel = (_props: RowLabelProps) => {
 	const data = useRowLabel<NonNullable<Header["navItems"]>[number]>();

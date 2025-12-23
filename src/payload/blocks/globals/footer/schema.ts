@@ -1,9 +1,6 @@
-import { link } from "@/payload/fields/link";
-
 import { isPublic } from "@/payload/access/access-control";
-
 import { revalidateFooter } from "@/payload/blocks/globals/footer/hooks/revalidate-footer";
-
+import { link } from "@/payload/fields/link";
 import type { GlobalConfig } from "payload";
 
 const Footer: GlobalConfig = {

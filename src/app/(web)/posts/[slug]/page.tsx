@@ -1,20 +1,16 @@
-import { cache, Fragment } from "react";
-import { draftMode } from "next/headers";
-import Image from "next/image";
-
-import config from "@payload-config";
-import { getPayload } from "payload";
-
-import { formatAuthors } from "@/payload/utilities/format-authors";
-import { formatDate } from "@/payload/utilities/format-date";
-import { generateMeta } from "@/payload/utilities/generate-meta";
-
 import { Container } from "@/components/container";
 import { LivePreviewListener } from "@/components/live-preview-listener";
 import { PayloadRedirects } from "@/components/payload-redirects";
 import { RichText } from "@/components/rich-text";
-
+import { formatAuthors } from "@/payload/utilities/format-authors";
+import { formatDate } from "@/payload/utilities/format-date";
+import { generateMeta } from "@/payload/utilities/generate-meta";
+import config from "@payload-config";
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
+import Image from "next/image";
+import { getPayload } from "payload";
+import { cache, Fragment } from "react";
 
 /**
  * @function generatestaticparams
@@ -122,22 +118,17 @@ const Page = async ({ params: paramsPromise }: Args) => {
 	const { content, categories, heroImage, populatedAuthors, publishedAt, title } = post;
 
 	// check for and format authors
-	const hasAuthors =
-		populatedAuthors &&
-		populatedAuthors.length > 0 &&
-		formatAuthors(populatedAuthors) !== "";
+	const hasAuthors = populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== "";
 
 	// image handling and fallback logic
 	const image = heroImage;
 	// determine image source url, using a default fallback path
-	const imageSrc =
-		typeof image === "string" ? image : (image?.url ?? "/way-finding-og.webp");
+	const imageSrc = typeof image === "string" ? image : (image?.url ?? "/way-finding-og.webp");
 	// determine image alt text, using a default string fallback
-	const imageAlt =
-		typeof image === "string" ? "Hero image" : (image?.alt ?? "Hero image");
+	const imageAlt = typeof image === "string" ? "Hero image" : (image?.alt ?? "Hero image");
 
 	return (
-		<Container className="px-4 pt-[144px] pb-20">
+		<Container className="px-4 pt-36 pb-20">
 			{/* payload redirects component handles payload-defined redirects, even for valid pages */}
 			<PayloadRedirects disableNotFound url={url} />
 
@@ -168,9 +159,7 @@ const Page = async ({ params: paramsPromise }: Args) => {
 				</div>
 
 				{/* main post title */}
-				<h1 className="mb-6 text-4xl leading-tight font-bold text-balance text-[#1A233D] md:text-5xl">
-					{title}
-				</h1>
+				<h1 className="mb-6 text-4xl leading-tight font-bold text-balance text-[#1A233D] md:text-5xl">{title}</h1>
 
 				{/* meta information: author and published date */}
 				<div className="mb-6 flex flex-col gap-4 text-[#1A233D] md:flex-row md:gap-16">
@@ -192,14 +181,14 @@ const Page = async ({ params: paramsPromise }: Args) => {
 				</div>
 
 				{/* hero image */}
-				<div className="relative mb-12 h-[400px] w-full overflow-hidden rounded-lg md:h-[500px]">
+				<div className="relative mb-12 h-100 w-full overflow-hidden rounded-lg md:h-125">
 					<div className="absolute inset-0">
 						<Image src={imageSrc} alt={imageAlt} fill priority className="object-cover" />
 					</div>
 				</div>
 
 				{/* main rich text content of the post */}
-				<RichText className="mx-auto max-w-[52rem]" data={content} enableGutter={false} />
+				<RichText className="mx-auto max-w-208" data={content} enableGutter={false} />
 			</div>
 		</Container>
 	);

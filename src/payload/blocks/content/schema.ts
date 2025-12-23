@@ -2,11 +2,10 @@ import {
 	FixedToolbarFeature,
 	HeadingFeature,
 	InlineToolbarFeature,
+	lexicalEditor,
 	OrderedListFeature,
 	UnorderedListFeature,
-	lexicalEditor,
 } from "@payloadcms/richtext-lexical";
-
 import type { Block } from "payload";
 
 const Content: Block = {

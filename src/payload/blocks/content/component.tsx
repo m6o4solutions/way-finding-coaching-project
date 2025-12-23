@@ -1,7 +1,5 @@
 import { Container } from "@/components/container";
 import { RichText } from "@/components/rich-text";
-
-// imports the typescript type definition for the content block from payload.
 import { ContentBlock as ContentBlockType } from "@/payload-types";
 
 /**
@@ -19,13 +17,7 @@ const ContentBlock = ({ textContent }: ContentBlockType) => {
 			{/* inner div for slight horizontal padding (px-3) applied directly to the content. */}
 			<div className="px-3">
 				{/* conditional rendering: displays the rich text only if textcontent data is present. */}
-				{textContent && (
-					<RichText
-						className="mx-auto mb-6 max-w-[50rem]"
-						data={textContent}
-						enableGutter={false}
-					/>
-				)}
+				{textContent && <RichText className="mx-auto mb-6 max-w-200" data={textContent} enableGutter={false} />}
 			</div>
 		</Container>
 	);

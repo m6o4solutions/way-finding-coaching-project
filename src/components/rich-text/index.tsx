@@ -1,40 +1,29 @@
-// imports the classnames merging utility.
 import { cn } from "@/lib/utils";
-
-// imports essential types and node structures from payload's lexical rich text package.
+import type {
+	BannerBlock as BannerBlockProps,
+	CallToAction as CTABlockProps,
+	MediaBlock as MediaBlockProps,
+} from "@/payload-types";
+import { BannerBlock } from "@/payload/blocks/banner/component";
+import { CodeBlock, CodeBlockProps } from "@/payload/blocks/code/component";
+import { CallToActionBlock } from "@/payload/blocks/cta/component";
+import { MediaBlock } from "@/payload/blocks/media/component";
 import {
 	DefaultNodeTypes,
 	SerializedBlockNode,
 	SerializedLinkNode,
 	type DefaultTypedEditorState,
 } from "@payloadcms/richtext-lexical";
-
-// imports the necessary rendering components and types for conversion.
 import {
+	RichText as ConvertRichText,
 	JSXConvertersFunction,
 	LinkJSXConverter,
-	RichText as ConvertRichText, // renamed to avoid collision with this component's name
 } from "@payloadcms/richtext-lexical/react";
-
-// imports custom react components for specific payload blocks (your components).
-import { BannerBlock } from "@/payload/blocks/banner/component";
-import { CallToActionBlock } from "@/payload/blocks/cta/component";
-import { CodeBlock, CodeBlockProps } from "@/payload/blocks/code/component";
-import { MediaBlock } from "@/payload/blocks/media/component";
-
-// imports the typescript types for your custom Payload Blocks.
-import type {
-	BannerBlock as BannerBlockProps,
-	CallToAction as CTABlockProps,
-	MediaBlock as MediaBlockProps,
-} from "@/payload-types";
 
 // defines the custom structure of block nodes expected within the lexical data.
 type NodeTypes =
 	| DefaultNodeTypes
-	| SerializedBlockNode<
-			CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps
-	  >;
+	| SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps>;
 
 /**
  * @function internalDocToHref

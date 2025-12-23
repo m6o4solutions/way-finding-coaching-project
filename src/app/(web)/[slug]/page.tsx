@@ -1,16 +1,12 @@
-import React, { cache } from "react";
-import { draftMode } from "next/headers";
-
-import config from "@payload-config";
-import { getPayload } from "payload";
-
-import { PayloadRedirects } from "@/components/payload-redirects";
 import { LivePreviewListener } from "@/components/live-preview-listener";
-
+import { PayloadRedirects } from "@/components/payload-redirects";
 import { RenderBlocks } from "@/payload/blocks/render-blocks";
 import { generateMeta } from "@/payload/utilities/generate-meta";
-
+import config from "@payload-config";
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
+import { getPayload } from "payload";
+import React, { cache } from "react";
 
 /**
  * generates the static path segments for all published pages in the 'pages' collection,

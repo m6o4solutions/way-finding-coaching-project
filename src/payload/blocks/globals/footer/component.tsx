@@ -1,8 +1,6 @@
-import Link from "next/link";
-
-import { getCachedGlobal } from "@/payload/utilities/get-globals";
-
 import type { Footer } from "@/payload-types";
+import { getCachedGlobal } from "@/payload/utilities/get-globals";
+import Link from "next/link";
 
 const Footer = async () => {
 	const footerData = (await getCachedGlobal("footer", 1)()) as Footer;

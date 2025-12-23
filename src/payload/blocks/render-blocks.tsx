@@ -1,5 +1,4 @@
-import { ComponentType, Fragment } from "react";
-
+import type { Page } from "@/payload-types";
 import { ArchiveBlock } from "@/payload/blocks/archive/component";
 import { ContentBlock } from "@/payload/blocks/content/component";
 import { CallToActionBlock } from "@/payload/blocks/cta/component";
@@ -9,12 +8,11 @@ import { FormBlock } from "@/payload/blocks/forms/component";
 import { MediaBlock } from "@/payload/blocks/media/component";
 import { MeetMichelleBlock } from "@/payload/blocks/meet-michelle/component";
 import { PrimaryHeroBlock } from "@/payload/blocks/primary-hero/component";
+import { ProblemAgitationBlock } from "@/payload/blocks/problem-agitation/component";
 import { SecondaryHeroBlock } from "@/payload/blocks/secondary-hero/component";
 import { SocialProofBlock } from "@/payload/blocks/social-proof/component";
 import { SolutionBenefitsBlock } from "@/payload/blocks/solution-benefits/component";
-import { ProblemAgitationBlock } from "@/payload/blocks/problem-agitation/component";
-
-import type { Page } from "@/payload-types";
+import { ComponentType, Fragment } from "react";
 
 /* defines which payload block types map to which react components.
    this acts as a registry that drives dynamic page rendering. */

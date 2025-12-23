@@ -1,7 +1,7 @@
 "use client";
 
-import { ComponentProps } from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ComponentProps } from "react";
 
 /**
  * @component ThemeProvider
@@ -13,10 +13,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
  * @param {ComponentProps<typeof NextThemesProvider>} props - all configuration props supported
  * by next-themes (e.g., attribute, defaultTheme, enableSystem).
  */
-const ThemeProvider = ({
-	children,
-	...props
-}: ComponentProps<typeof NextThemesProvider>) => {
+const ThemeProvider = ({ children, ...props }: ComponentProps<typeof NextThemesProvider>) => {
 	return (
 		// renders the actual provider, spreading all configuration props to it.
 		<NextThemesProvider {...props}>{children}</NextThemesProvider>

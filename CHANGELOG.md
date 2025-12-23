@@ -1,37 +1,37 @@
 # [1.27.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.26.0...v1.27.0) (2025-12-22)
 
-
 ### Features
 
-* enhance ClarityTracker to support debug mode in dev ([3af5c54](https://github.com/m6o4solutions/way-finding-coaching-project/commit/3af5c54aeeb7efb4acdbf2a52d05c47af52119a7))
+- enhance ClarityTracker to support debug mode in dev
+  ([3af5c54](https://github.com/m6o4solutions/way-finding-coaching-project/commit/3af5c54aeeb7efb4acdbf2a52d05c47af52119a7))
 
 # [1.26.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.25.1...v1.26.0) (2025-12-19)
 
-
 ### Features
 
-* integrate Microsoft Clarity for user behavior tracking ([cf65402](https://github.com/m6o4solutions/way-finding-coaching-project/commit/cf6540276e5a4d1604dda33b4c26bffdfca49acd))
+- integrate Microsoft Clarity for user behavior tracking
+  ([cf65402](https://github.com/m6o4solutions/way-finding-coaching-project/commit/cf6540276e5a4d1604dda33b4c26bffdfca49acd))
 
 ## [1.25.1](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.25.0...v1.25.1) (2025-12-18)
 
-
 ### Bug Fixes
 
-* add permissions for issues and pull-requests ([afbd5db](https://github.com/m6o4solutions/way-finding-coaching-project/commit/afbd5db7fbd9ebc4b19511e68baa4ddbc5220bb2))
+- add permissions for issues and pull-requests
+  ([afbd5db](https://github.com/m6o4solutions/way-finding-coaching-project/commit/afbd5db7fbd9ebc4b19511e68baa4ddbc5220bb2))
 
 # [1.25.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.24.0...v1.25.0) (2025-12-18)
 
-
 ### Features
 
-* update GitHub Actions workflows for improved token usage ([0d270c8](https://github.com/m6o4solutions/way-finding-coaching-project/commit/0d270c8492172ac23f4c0c7f94eb3430540336ed))
+- update GitHub Actions workflows for improved token usage
+  ([0d270c8](https://github.com/m6o4solutions/way-finding-coaching-project/commit/0d270c8492172ac23f4c0c7f94eb3430540336ed))
 
 # [1.24.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.23.0...v1.24.0) (2025-12-17)
 
-
 ### Features
 
-* add Dockerfile and GitHub Actions workflow for GHCR deployment ([5859ff0](https://github.com/m6o4solutions/way-finding-coaching-project/commit/5859ff0e1a094f657df29289f332c48ca0f5968e))
+- add Dockerfile and GitHub Actions workflow for GHCR deployment
+  ([5859ff0](https://github.com/m6o4solutions/way-finding-coaching-project/commit/5859ff0e1a094f657df29289f332c48ca0f5968e))
 
 # [1.23.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.22.0...v1.23.0) (2025-12-03)
 

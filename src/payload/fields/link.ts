@@ -1,5 +1,4 @@
 import deepMerge from "@/payload/utilities/deep-merge";
-
 import type { Field, GroupField } from "payload";
 
 export type LinkAppearances = "default" | "outline";
@@ -121,9 +120,7 @@ const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = 
 		let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline];
 
 		if (appearances) {
-			appearanceOptionsToUse = appearances.map(
-				(appearance) => appearanceOptions[appearance],
-			);
+			appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance]);
 		}
 
 		linkResult.fields.push({

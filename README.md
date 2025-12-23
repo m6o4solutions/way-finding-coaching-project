@@ -1,8 +1,7 @@
 # The Way Finding Coaching Landing Page Project
 
-Welcome to the repository for The Way Finding Landing Page project. This repository houses
-the codebase for the dynamic and interactive landing page, showcasing our commitment to
-excellence in web development.
+Welcome to the repository for The Way Finding Landing Page project. This repository houses the codebase for the dynamic
+and interactive landing page, showcasing our commitment to excellence in web development.
 
 ## Table of Contents
 
@@ -15,9 +14,8 @@ excellence in web development.
 
 ## Introduction
 
-Superior Software Solutions is dedicated to transforming digital experiences. This website
-serves as a testament to our skills and commitment to delivering top-notch web solutions
-for clients.
+Superior Software Solutions is dedicated to transforming digital experiences. This website serves as a testament to our
+skills and commitment to delivering top-notch web solutions for clients.
 
 ## Features
 

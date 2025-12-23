@@ -10,10 +10,7 @@ type Global = keyof Config["globals"];
 type DataFromGlobalSlug<TSlug extends Global> = Config["globals"][TSlug];
 
 // fetches a single global document from payload using its slug
-const getGlobal = async <TSlug extends Global>(
-	slug: TSlug,
-	depth = 0,
-): Promise<DataFromGlobalSlug<TSlug>> => {
+const getGlobal = async <TSlug extends Global>(slug: TSlug, depth = 0): Promise<DataFromGlobalSlug<TSlug>> => {
 	// initialize payload with its config
 	const payload = await getPayload({ config });
 

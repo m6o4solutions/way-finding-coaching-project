@@ -27,9 +27,7 @@ const formatDate = (dateString?: string | null): string => {
 		// handle time differences under an hour
 		if (diffHours < 1) {
 			const diffMinutes = Math.floor(diffMs / (1000 * 60));
-			return diffMinutes <= 1
-				? "Just now"
-				: `${diffMinutes} minute${diffMinutes > 1 ? "s" : ""} ago`;
+			return diffMinutes <= 1 ? "Just now" : `${diffMinutes} minute${diffMinutes > 1 ? "s" : ""} ago`;
 		}
 
 		// return hours ago for same-day entries
