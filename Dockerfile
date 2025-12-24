@@ -40,7 +40,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-# uncomment the following line in case you want to disable telemetry during the build.
+# disable telemetry during the build
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN \
@@ -57,7 +57,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# uncomment the following line in case you want to disable telemetry during runtime.
+# disable telemetry during runtime
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN addgroup --system --gid 1001 nodejs
