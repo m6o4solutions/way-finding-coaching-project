@@ -6,20 +6,21 @@ import config from "@payload-config";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { getPayload } from "payload";
-import React, { cache } from "react";
+import { cache } from "react";
 
 /**
- * generates the static path segments for all published pages in the 'pages' collection,
- * excluding the 'home' page. this is used by next.js for static site generation (SSG).
- * @returns {Promise<Array<{ slug: string }>>} an array of static parameter objects.
+ * generates the static path segments for all published pages in the 'pages' collection.
+ * this allows next.js to statically generate these routes at build time (ssg).
  */
 const generateStaticParams = async () => {
 	const payload = await getPayload({ config: config });
 
 	const pages = await payload.find({
 		collection: "pages",
+		// only include published documents for static generation.
 		draft: false,
 		limit: 1000,
+		// override access control to ensure the build process can read all pages.
 		overrideAccess: false,
 		pagination: false,
 		select: {
@@ -28,28 +29,57 @@ const generateStaticParams = async () => {
 	});
 
 	const params = pages.docs
-		// filter out the 'home' slug since it's typically handled by the root route
+		// exclude the 'home' slug as it is handled by the root page route.
 		?.filter((doc) => {
 			return doc.slug !== "home";
 		})
-		// map the remaining documents to the required { slug } object structure
+		// map documents to the specific parameter structure required by next.js.
 		.map(({ slug }) => {
 			return { slug };
 		});
 
-	// if params is undefined (e.g., if pages.docs was null), return an empty array
 	return params || [];
 };
 
 type Args = { params: Promise<{ slug?: string }> };
 
 /**
- * next.js page component responsible for fetching and rendering page content based on slug.
- * it also handles draft mode preview and redirects.
+ * fetches a specific page document from payload based on the url slug.
+ * uses react cache to prevent duplicate database queries during the same request cycle.
  */
-const Page = async ({ params: paramsPromise }: Args) => {
+const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+	// check if draft mode is active to determine whether to fetch published or draft content.
 	const { isEnabled: draft } = await draftMode();
 
+	const payload = await getPayload({ config: config });
+
+	const result = await payload.find({
+		collection: "pages",
+		// enable draft retrieval if the next.js draft mode is active.
+		draft,
+		limit: 1,
+		pagination: false,
+		overrideAccess: true,
+		where: {
+			slug: {
+				equals: slug,
+			},
+		},
+	});
+
+	// return the first matching document or null if no match is found.
+	return result.docs?.[0] || null;
+});
+
+/**
+ * the main page component responsible for rendering content based on the dynamic slug.
+ * it handles data fetching, redirects, and live preview integration.
+ */
+const Page = async ({ params: paramsPromise }: Args) => {
+	// check draft status to conditionally render preview tools.
+	const { isEnabled: draft } = await draftMode();
+
+	// extract the slug from the params promise, defaulting to 'home' if undefined.
 	const { slug = "home" } = await paramsPromise;
 
 	const url = "/" + slug;
@@ -58,6 +88,7 @@ const Page = async ({ params: paramsPromise }: Args) => {
 		slug,
 	});
 
+	// if no page is found, delegate to the redirects component to handle 404s or database-defined redirects.
 	if (!page) {
 		return <PayloadRedirects url={url} />;
 	}
@@ -66,19 +97,20 @@ const Page = async ({ params: paramsPromise }: Args) => {
 
 	return (
 		<article>
-			{/* allows redirects for valid pages too */}
+			{/* checks for redirects even on valid pages to ensure correct canonical paths. */}
 			<PayloadRedirects disableNotFound url={url} />
 
+			{/* renders the live preview listener only when draft mode is active. */}
 			{draft && <LivePreviewListener />}
 
+			{/* renders the flexible content blocks defined in the page layout. */}
 			<RenderBlocks blocks={layout} />
 		</article>
 	);
 };
 
 /**
- * generates dynamic Next.js metadata (SEO) for a page based on its slug,
- * fetching data from the corresponding Payload document.
+ * generates dynamic seo metadata for the page by fetching the corresponding payload document.
  */
 const generateMetadata = async ({ params: paramsPromise }: Args): Promise<Metadata> => {
 	const { slug = "home" } = await paramsPromise;
@@ -89,37 +121,5 @@ const generateMetadata = async ({ params: paramsPromise }: Args): Promise<Metada
 
 	return generateMeta({ doc: page });
 };
-
-/**
- * fetches a single page document from payload based on its slug,
- * respecting the next.js draft mode status for fetching drafts or published content.
- * the result is cached using react's `cache`.
- * @param {object} args - the arguments.
- * @param {string} args.slug - the slug of the page.
- * @returns {Promise<any | null>} the page document or null if not found.
- */
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
-	const { isEnabled: draft } = await draftMode();
-
-	const payload = await getPayload({ config: config });
-
-	const result = await payload.find({
-		collection: "pages",
-		// fetch drafts if draft mode is enabled
-		draft,
-		limit: 1,
-		pagination: false,
-		// override access only in draft mode to ensure drafts are visible
-		overrideAccess: draft,
-		where: {
-			slug: {
-				equals: slug,
-			},
-		},
-	});
-
-	// return the first document found or null
-	return result.docs?.[0] || null;
-});
 
 export { generateStaticParams, Page as default, generateMetadata };
