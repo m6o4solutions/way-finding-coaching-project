@@ -1,0 +1,31 @@
+services:
+  way-finding-coaching:
+    image: ghcr.io/m6o4solutions/way-finding-coaching-project:latest
+    container_name: way-finding-coaching
+    restart: unless-stopped
+    networks:
+      - traefik-network
+    env_file:
+      - stack.env
+    labels:
+      - "traefik.enable=true"
+
+      # 1. the router: listens for both www and non-www
+      - "traefik.http.routers.way-finding-coaching.rule=Host(`way-finding.co.ke`) || Host(`www.way-finding.co.ke`)"
+      - "traefik.http.routers.way-finding-coaching.entrypoints=websecure"
+      - "traefik.http.routers.way-finding-coaching.tls.certresolver=letsencrypt"
+
+      # 2. the middleware: define a "strip-www" redirect
+      - "traefik.http.middlewares.strip-www.redirectregex.regex=^https?://www\\.(.+)"
+      - "traefik.http.middlewares.strip-www.redirectregex.replacement=https://$${1}"
+      - "traefik.http.middlewares.strip-www.redirectregex.permanent=true"
+
+      # 3. apply the middleware to the router
+      - "traefik.http.routers.way-finding-coaching.middlewares=strip-www"
+
+      # 4. the service: define the port in the container to traffic forward to
+      - "traefik.http.services.way-finding-coaching.loadbalancer.server.port=3000"
+
+networks:
+  traefik-network:
+    external: true
