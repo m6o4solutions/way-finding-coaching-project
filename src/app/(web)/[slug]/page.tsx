@@ -55,11 +55,10 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
 
 	const result = await payload.find({
 		collection: "pages",
-		// enable draft retrieval if the next.js draft mode is active.
 		draft,
 		limit: 1,
 		pagination: false,
-		overrideAccess: true,
+		overrideAccess: draft,
 		where: {
 			slug: {
 				equals: slug,

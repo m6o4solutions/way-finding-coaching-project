@@ -1,9 +1,9 @@
 # [1.28.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.27.0...v1.28.0) (2025-12-25)
 
-
 ### Features
 
-* add docker-compose configuration for way-finding-coaching service ([c8a6819](https://github.com/m6o4solutions/way-finding-coaching-project/commit/c8a6819d4860a0d30849b9bffb56504fb13ed6df))
+- add docker-compose configuration for way-finding-coaching service
+  ([c8a6819](https://github.com/m6o4solutions/way-finding-coaching-project/commit/c8a6819d4860a0d30849b9bffb56504fb13ed6df))
 
 # [1.27.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.26.0...v1.27.0) (2025-12-22)
 
