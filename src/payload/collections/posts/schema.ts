@@ -20,6 +20,8 @@ import {
 	HorizontalRuleFeature,
 	InlineToolbarFeature,
 	lexicalEditor,
+	OrderedListFeature,
+	UnorderedListFeature,
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
@@ -102,6 +104,8 @@ const Posts: CollectionConfig<"posts"> = {
 										FixedToolbarFeature(),
 										InlineToolbarFeature(),
 										HorizontalRuleFeature(),
+										OrderedListFeature(),
+										UnorderedListFeature(),
 									];
 								},
 							}),
