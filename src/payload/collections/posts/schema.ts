@@ -1,7 +1,7 @@
 import { isAuthenticated, isAuthenticatedOrPublished } from "@/payload/access/access-control";
 import { Banner } from "@/payload/blocks/banner/schema";
-// import { Code } from "@/payload/blocks/code/schema";
-// import { Media } from "@/payload/blocks/media/schema";
+import { Code } from "@/payload/blocks/code/schema";
+import { Media } from "@/payload/blocks/media/schema";
 import { populateAuthors } from "@/payload/collections/posts/hooks/populate-authors";
 import { revalidateDelete, revalidatePost } from "@/payload/collections/posts/hooks/revalidate-post";
 import { slugField } from "@/payload/fields/slug";
@@ -20,6 +20,8 @@ import {
 	HorizontalRuleFeature,
 	InlineToolbarFeature,
 	lexicalEditor,
+	OrderedListFeature,
+	UnorderedListFeature,
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
@@ -98,10 +100,12 @@ const Posts: CollectionConfig<"posts"> = {
 									return [
 										...rootFeatures,
 										HeadingFeature({ enabledHeadingSizes: ["h1", "h2", "h3", "h4"] }),
-										BlocksFeature({ blocks: [Banner] }),
+										BlocksFeature({ blocks: [Banner, Code, Media] }),
 										FixedToolbarFeature(),
 										InlineToolbarFeature(),
 										HorizontalRuleFeature(),
+										OrderedListFeature(),
+										UnorderedListFeature(),
 									];
 								},
 							}),
