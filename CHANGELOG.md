@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.28.0...v1.29.0) (2025-12-26)
+
+
+### Features
+
+* add ordered and unordered list features to posts collection ([dfed507](https://github.com/m6o4solutions/way-finding-coaching-project/commit/dfed5076aa3cd87670ccabc88b79514b4f4a16e5))
+
 # [1.28.0](https://github.com/m6o4solutions/way-finding-coaching-project/compare/v1.27.0...v1.28.0) (2025-12-25)
 
 ### Features
