@@ -28,13 +28,9 @@ WORKDIR /app
 
 # ARGs for next.js client-side bundling (required)
 # these MUST be real values as they are baked into the JS bundle
+ARG DATABASE_URI
 ARG NEXT_PUBLIC_CLARITY_ID
 ARG NEXT_PUBLIC_SERVER_URL
-
-# ARGs for payload cms build process (placeholders allowed)
-# we accept these to prevent the build from crashing, but they will be populated
-# with dummy values by github actions to protect secrets
-ARG DATABASE_URI
 ARG PAYLOAD_SECRET
 
 ENV DATABASE_URI=$DATABASE_URI
